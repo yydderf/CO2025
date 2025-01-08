@@ -19,7 +19,6 @@ In the provided source code, we include a simple instruction file, `TEST_INSTRUC
 
 > [!IMPORTANT]
 > The `rst` signal is active low, which means the module will reset when the `rst` signal is set to zero. You should follow this design in your implementation.
-```
 
 ## Ripes
 
