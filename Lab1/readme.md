@@ -1,5 +1,8 @@
 # Assembly Language & CPU Component Units Lab
 
+## Lab1 Slide
+[CO2025_lab1_slide](<https://docs.google.com/presentation/d/1U3eBYWhgzu3JpwWNcfbryPxrTzjgh2a2/edit?usp=drive_link&ouid=110416110109267348957&rtpof=true&sd=true>)
+
 ## Intro.
 
 This lab is divided into two parts. The first part will focus on getting familiar with basic RISC-V assembly instructions and implementing some simple functions. In the second part, you will dive deeper into understanding and implementing key components of the processor, specifically the ALUCtrl and the ALU itself. These components are crucial for understanding how instructions are processed and executed in a RISC-V pipeline.<br/>
