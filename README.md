@@ -35,9 +35,15 @@ We will provide the following template to serve as a reference for the implement
 ```java
 ├── lab1
 │   ├── asm_template
-│   │   ├── tp
+│   │   ├── dp
+|   |   |   ├──dp.c
+|   |   |   ├──dp.s
 │   │   ├── recursive
+|   |   |   ├──recursive.c
+|   |   |   ├──recursive.s
 │   │   ├── xor_trick
+|   |   |   ├──main.c
+|   |   |   ├──main.s
 │   ├── cpu_component_template
 │   │   ├── ALU.v
 │   │   ├── ALUctrl.v
