@@ -51,8 +51,10 @@ We will provide the following template to serve as a reference for the implement
 │   ├── ImmGen.v
 │   ├── InstructionMemory.v // Load from the "TEST_INSTRUCTIONS.txt"
 │   ├── Mux2to1.v
+│   ├── Mux3to1.v
 │   ├── PC.v
 │   ├── Register.v
+|   ├── BranchComp.v
 │   ├── ShiftLeftOne.v
 │   ├── SingleCycleCPU.v // finish the top module and the submodules.
 │   ├── TEST_INSTRUCTIONS.asm // set of simple instructions are provided
