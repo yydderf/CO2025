@@ -10,7 +10,7 @@ As for other modules, TAs think you should finish lab4 based on your lab3 submis
 
 ## Reference Architecture
 As long as it works successfully, it is not necessary to implement it according to the architecture diagram.
-![image](https://hackmd.io/_uploads/HJKeqYqByl.png)
+![image](https://github.com/nycu-caslab/CO2025/blob/main/Lab4/CO_Lab4_architecture.png)
 
 
 ## Hazard Dectection Unit
@@ -64,10 +64,10 @@ The name of the zip file should be <student_id>.zip, and the structure of the fi
 
 
 ## Reference
-Computer Organization and Design RISC-V Edition, CH4
-[Ripes](https://github.com/mortbopet/Ripes)
-[RISC-V Reader](http://riscvbook.com/)
-[riscv-isa-pages](https://msyksphinz-self.github.io/riscv-isadoc/html/rvi.html)
+- Computer Organization and Design RISC-V Edition, CH4
+- [Ripes](https://github.com/mortbopet/Ripes)
+- [RISC-V Reader](http://riscvbook.com/)
+- [riscv-isa-pages](https://msyksphinz-self.github.io/riscv-isadoc/html/rvi.html)
 
 
 
