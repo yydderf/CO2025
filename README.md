@@ -23,7 +23,7 @@ The lab 0 aims to enhance your Verilog coding abilities and to provide you with 
 
 ## Lab 1 - Lab 4 : From Single Cycle CPU to Advanced Pipeline CPU
 
-- [Lab 1 : Assembly & Basic Design Flow](https://nycu-caslab.github.io/CO2025_Web/labs/lab1.html)
+- [Lab 1 : Assembly & Basic ALU Design Flow](https://nycu-caslab.github.io/CO2025_Web/labs/lab1.html)
 - [Lab 2 : Single Cycle CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab2.html)
 - [Lab 3 : Simple Pipeline CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab3.html)
 - [Lab 4 : Advance Pipeline CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab4.html)
