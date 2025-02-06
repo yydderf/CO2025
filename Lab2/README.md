@@ -4,7 +4,10 @@
 
 In Lab2, you are tasked with implementing a Single Cycle CPU based on the RISC-V ISA. Upon completing this lab, you should have a deeper understanding of CPU architecture and the RISC-V instruction set.
 
-Don’t panic! This lab is not as difficult as it might seem. To successfully implement the RISC-V CPU, we encourage you to study the functionality of each component and understand how they cooperate. We will also introduce a useful RISC-V simulator, Ripes, which demonstrates the CPU workflow step by step.
+Don't panic! This lab is not as difficult as it might seem. To successfully implement the RISC-V CPU, we encourage you to study the functionality of each component and understand how they cooperate. We will also introduce a useful RISC-V simulator, Ripes, which demonstrates the CPU workflow step by step.
+
+## Lab Overview Slides
+[Lab2: Single Cycle CPU](https://docs.google.com/presentation/d/1eRFfkqvSi38A7dTkgVR6ztC3lwFJdtpPpFiv_BhThyk/edit?usp=sharing)
 
 ## Lab Source Code
 
@@ -137,6 +140,11 @@ TAs have prepared a Verilator testbench and some `TEST_INSTRUCTION.txt` files to
 > [!WARNING]
 > Do not modify the register, instruction memory, or CPU I/O interface; otherwise, you will receive 0 points.
 
+## Scoring Criteria
+- Basic Test: 20%
+- Hidden Test: 40%
+- Fibonacci Test: 40%
+
 ## Submission
 
 Please submit your source code as a ZIP file to E3. The name of the ZIP file should be `lab2_<student_id>.zip`, and the structure should be as follows:
@@ -184,12 +192,9 @@ Validation successful: All required files are present.
 > [!WARNING]
 > The deadline for submission is x/xx at 23:59. Submissions in an incorrect format will result in a 10-point deduction.
 
-> [!WARNING]
-> Any instance of copying code from others—whether from classmates, online sources, or any unauthorized material—will result in a grade of 0 for the assignment.
-
 ## Hints
 
-- Read the textbook first to understand each submodule’s functionality.
+- Read the textbook first to understand each submodule's functionality.
 - Use waveform debugging to simplify the debugging process.
 - Try generating your own RISC-V machine code using Ripes. You can write simple assembly code to verify if your implementation works as expected.
 
