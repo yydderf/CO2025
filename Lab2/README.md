@@ -190,7 +190,7 @@ Validation successful: All required files are present.
 ```
 
 > [!WARNING]
-> The deadline for submission is x/xx at 23:59. Submissions in an incorrect format will result in a 10-point deduction.
+> The deadline for submission is 4/1 at 23:59. Submissions in an incorrect format will result in a 10-point deduction.
 
 ## Hints
 
