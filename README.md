@@ -3,10 +3,9 @@
 This course aims to introduce the design and implementation of a simple CPU. 
 You’ll learn both concept and implementation from a series of labs.
 
-Check the [lecture website](https://people.cs.nycu.edu.tw/~ttyeh/course/2024_Spring/CS10014/outline.html) for the schedule and the lecture slides, and the [lab website](https://nycu-caslab.github.io/CO2025_Web/index.html) for instructions for each labs!
+Check the [lecture website](https://people.cs.nycu.edu.tw/~ttyeh/course/2024_Spring/CS10014/outline.html) for the schedule and the lecture slides.
 
-
-## [Lab 0 : Environment Setup & simple Verilog practice](https://nycu-caslab.github.io/CO2025_Web/labs/lab0.html)
+## [Lab 0: Environment Setup & simple Verilog practice](https://github.com/nycu-caslab/CO2025/tree/main/Lab0)
 
 The lab 0 aims to enhance your Verilog coding abilities and to provide you with a preliminary understanding and practical experience with [GTKWave](https://gtkwave.sourceforge.net/) and [Verilator](https://www.veripool.org/verilator/), which we will use in future projects.
 ```java
@@ -21,12 +20,12 @@ The lab 0 aims to enhance your Verilog coding abilities and to provide you with 
 ```
 
 
-## Lab 1 - Lab 4 : From Single Cycle CPU to Advanced Pipeline CPU
+## Lab 1 - Lab 4: From Single Cycle CPU to Advanced Pipeline CPU
 
-- [Lab 1 : Assembly & Basic ALU Design Flow](https://nycu-caslab.github.io/CO2025_Web/labs/lab1.html)
-- [Lab 2 : Single Cycle CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab2.html)
-- [Lab 3 : Simple Pipeline CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab3.html)
-- [Lab 4 : Advance Pipeline CPU](https://nycu-caslab.github.io/CO2025_Web/labs/lab4.html)
+- [Lab 1: Assembly & Basic ALU Design Flow](https://github.com/nycu-caslab/CO2025/tree/main/Lab1)
+- [Lab 2: Single Cycle CPU](https://github.com/nycu-caslab/CO2025/tree/main/Lab2)
+- [Lab 3: Simple Pipeline CPU](https://github.com/nycu-caslab/CO2025/tree/main/Lab3)
+- [Lab 4: Advance Pipeline CPU](https://github.com/nycu-caslab/CO2025/tree/main/Lab4)
 
 These four labs cover some fundamental concepts of CPUs. We will start from assembly language, move through the CPU components, then build a single-cycle CPU, and finally transition to a pipelined CPU. 
 During the implementation of the branch instructions of the pipelined version, we will introduce a forwarding unit and hazard detection.
@@ -73,7 +72,7 @@ We will provide the following template to serve as a reference for the implement
 │   ├── Forwarding_Unit.v
 ```
 
-## [Lab 5 : Implementing a Cache Manager](https://nycu-caslab.github.io/CO2025_Web/labs/lab5.html)
+## [Lab 5: Implementing a Cache Manager](https://github.com/nycu-caslab/CO2025/tree/main/Lab5)
 
 You’ll design a cache manager to manage the cache table and data in cache, we are providing the code of the simulator, but you need to implement the remaining cache manager to finish the lab.
 
@@ -103,7 +102,7 @@ There are no restrictions about the implementation of your cache, and there are 
 │   └── Trace.txt
 ```
 
-## Appendix : Getting Your Lab CPU to Run C
+## Appendix: Getting Your Lab CPU to Run C
 
 If you are interested in running C on your lab-4 CPU, you can use the kits we provide below and follow the steps and demonstrations shown in the [instructional video](https://drive.google.com/file/d/1nEIGAVXTM3-w0m5Q4jJV8ISoqoSjpM4X/view?usp=sharing), the instructions pdf are also provided under the COCPU directory.
 
