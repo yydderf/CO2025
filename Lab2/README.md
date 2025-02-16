@@ -27,7 +27,7 @@ In the provided source code, we include a simple instruction file, `TEST_INSTRUC
 
 [Ripes](https://ripes.me/) is a visual computer architecture simulator and assembly code editor designed for the RISC-V instruction set architecture.
 
-![ripes1](https://nycu-caslab.github.io/CO2025_Web/_images/ripes1.png)
+![ripes1](images/ripes1.png)
 
 As shown in the picture above, you can write your own assembly code, clock the processor, and verify the register values.
 
@@ -71,7 +71,7 @@ addi t1 zero 100
 
 > [!IMPORTANT]
 > Ensure that you change the settings in Ripes to match the constraints of the register values specified for this lab.
-![lab2-ripes2](https://nycu-caslab.github.io/CO2025_Web/_images/ripes2.png)
+![lab2-ripes2](images/ripes2.png)
 
 ## Single Cycle CPU
 
@@ -79,52 +79,52 @@ addi t1 zero 100
 
 You can follow the architecture diagram to implement a single-cycle CPU.
 
-![lab2-artitecture](https://nycu-caslab.github.io/CO2025_Web/_images/artitecture.jpg)
+![lab2-artitecture](images/artitecture.jpg)
 
 ### Instruction
 
 Implement the following instructions. The RV32I ISA layout is provided below.
 
 - add  
-  ![add](https://nycu-caslab.github.io/CO2025_Web/_images/add.png)
+  ![add](images/add.png)
 - addi  
-  ![addi](https://nycu-caslab.github.io/CO2025_Web/_images/addi.png)
+  ![addi](images/addi.png)
 - sub  
-  ![sub](https://nycu-caslab.github.io/CO2025_Web/_images/sub.png)
+  ![sub](images/sub.png)
 - and  
-  ![and](https://nycu-caslab.github.io/CO2025_Web/_images/and.png)
+  ![and](images/and.png)
 - andi  
-  ![andi](https://nycu-caslab.github.io/CO2025_Web/_images/andi.png)
+  ![andi](images/andi.png)
 - or  
-  ![or](https://nycu-caslab.github.io/CO2025_Web/_images/or.png)
+  ![or](images/or.png)
 - ori  
-  ![ori](https://nycu-caslab.github.io/CO2025_Web/_images/ori.png)
+  ![ori](images/ori.png)
 - slt  
-  ![slt](https://nycu-caslab.github.io/CO2025_Web/_images/slt.png)
+  ![slt](images/slt.png)
 - slti  
-  ![slti](https://nycu-caslab.github.io/CO2025_Web/_images/slti.png)
+  ![slti](images/slti.png)
 - lw  
-  ![lw](https://nycu-caslab.github.io/CO2025_Web/_images/lw.png)
+  ![lw](images/lw.png)
 - sw  
-  ![sw](https://nycu-caslab.github.io/CO2025_Web/_images/sw.png)
+  ![sw](images/sw.png)
 - beq  
-  ![beq](https://nycu-caslab.github.io/CO2025_Web/_images/beq.png)
+  ![beq](images/beq.png)
 - bne
-  ![bne](https://nycu-caslab.github.io/CO2025_Web/_images/bne.png)
+  ![bne](images/bne.png)
 - blt
-  ![blt](https://nycu-caslab.github.io/CO2025_Web/_images/blt.png)
+  ![blt](images/blt.png)
 - bge
-  ![bge](https://nycu-caslab.github.io/CO2025_Web/_images/bge.png)
+  ![bge](images/bge.png)
 - jal  
    `jal` stores `pc+4` in `regs[rd]`, executes `pc = pc + imm << 1`
-  ![jal](https://nycu-caslab.github.io/CO2025_Web/_images/jal.png)
+  ![jal](images/jal.png)
 - jalr  
   `jalr` stores `pc+4` in `regs[rd]`, exectues `pc = regs[rs1] + imm`
-  ![jalr](https://nycu-caslab.github.io/CO2025_Web/_images/jalr.png)
+  ![jalr](images/jalr.png)
 
 > [!IMPORTANT]
 > All operations are signed. You must follow this ISA table to implement your instructions:
-![lab2-2](https://nycu-caslab.github.io/CO2025_Web/_images/ISAtable.png)
+![lab2-2](images/ISAtable.png)
 
 ## Requirements
 
@@ -190,7 +190,7 @@ Validation successful: All required files are present.
 ```
 
 > [!WARNING]
-> The deadline for submission is 4/1 at 23:59. Submissions in an incorrect format will result in a 10-point deduction.
+> The deadline for submission is 4/8 at 23:59. Submissions in an incorrect format will result in a 10-point deduction.
 
 ## Hints
 
