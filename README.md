@@ -3,7 +3,7 @@
 This course aims to introduce the design and implementation of a simple CPU. 
 You’ll learn both concept and implementation from a series of labs.
 
-Check the [lecture website](https://people.cs.nycu.edu.tw/~ttyeh/course/2024_Spring/CS10014/outline.html) for the schedule and the lecture slides.
+Check the [lecture website](https://people.cs.nycu.edu.tw/~ttyeh/course/2025_Spring/CS10014/outline.html) for the schedule and the lecture slides.
 
 ## [Lab 0: Environment Setup & simple Verilog practice](https://github.com/nycu-caslab/CO2025/tree/main/Lab0)
 
