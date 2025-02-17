@@ -102,24 +102,23 @@ There are no restrictions about the implementation of your cache, and there are 
 │   └── Trace.txt
 ```
 
-## Appendix: Getting Your Lab CPU to Run C
+## Appendix: Run Compiled C on Lab4 CPU using FPGA
 
-If you are interested in running C on your lab-4 CPU, you can use the kits we provide below and follow the steps and demonstrations shown in the [instructional video](https://drive.google.com/file/d/1nEIGAVXTM3-w0m5Q4jJV8ISoqoSjpM4X/view?usp=sharing), the instructions pdf are also provided under the COCPU directory.
+If you are interested in running compiled C on your lab-4 CPU, you can use the kits we provide below and follow the steps and demonstrations shown in the ***instruction pdf***, they are provided under the `CO-FPGA` directory.
 
 Please keep in mind that the supported instructions for lab CPU is extremely limited, so it may only be able to run some basic C programs.
 ```java
-├── COCPU
+├── CO-FPGA
 │   ├── Bitstream
-│   │   ├── cpu_top.bin // try ".bin" if Tenagra fails programming ".bit"
 │   │   └── cpu_top.bit // generated bit file
-│   ├── COCPU_mimas
-│   │   ├── COCPU_mimas.srcs/ //source code here
-│   │   └── COCPU_mimas.xpr
+│   ├── COCPU_nexys
+│   │   ├── COCPU_nexys.srcs/ //source code here
+│   │   └── COCPU_nexys.xpr
 │   ├── CO-FPGA.pdf // instructions pdf
 │   └── SW_dev
 │       ├── cpu_lib.c
 │       ├── cpu_lib.h // extremely minimal library for your lab CPU.
-│       ├── hello.c // write your hello world here
+│       ├── hello.c   // write your hello world here
 │       ├── hello.ld
-│       └── Makefile // use "make" to make everything
+│       └── Makefile  // use "make" to make everything
 ```
