@@ -10,7 +10,10 @@ In addition, for other labs that involve writing Verilog, we provide brief [revi
 Please search how to install **VMware workstation 17** on internet, and click [cloud link](https://drive.google.com/open?id=1E4y2BAJt8UGt3aKIF2QjL2CgAjDIwCiz&amp%3Busp=drive_copy&usp=drive_copy) to download the installer.
 
 Virtual Machine VM
-- Download : [Click here](https://mega.nz/file/DM9hAayZ#Uu0cvXszt6_k_12zYGMZgFCilaymNbg-pNnebD5Ylg0) (19GB, suggest preparing at least 50GB for VM)
+- Download : Please use the following command to download it (19GB, suggest preparing at least 50GB for VM):
+  ```bash
+  scp anonymous@sftp.userwei.com:/public/COVM_Ubuntu.zip .
+  ``` 
 - Platform: Ubuntu20.04 amd64
 - Machine: COVM
 - Account: student
