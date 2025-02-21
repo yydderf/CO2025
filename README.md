@@ -102,23 +102,25 @@ There are no restrictions about the implementation of your cache, and there are 
 │   └── Trace.txt
 ```
 
-## Appendix: Run Compiled C on Lab4 CPU using FPGA
+## [Appendix: Running Compiled C on Lab 4 CPU using FPGA](https://github.com/nycu-caslab/CO2025/blob/main/CO-FPGA/CO-FPGA.pdf)
 
-If you are interested in running compiled C on your lab-4 CPU, you can use the kits we provide below and follow the steps and demonstrations shown in the ***instruction pdf***, they are provided under the `CO-FPGA` directory.
+If you are interested about running some compiled C on your lab 4 CPU using FPGA (Digilent Nexys A7-100t), you can use the kits we provide below and follow the steps and demonstrations shown in the [***instruction pdf***](https://github.com/nycu-caslab/CO2025/blob/main/CO-FPGA/CO-FPGA.pdf), provided under the `CO-FPGA` directory.
 
-Please keep in mind that the supported instructions for lab CPU is extremely limited, so it may only be able to run some basic C programs.
+This kit provides special library containing `printf()`, `getchar()` and boot function, linker script to perform specific memory layout, UART TX and RX circuits and so.
+
+Please keep in mind that the supported instructions for the lab 4 CPU is extremely limited, it is only capable of running some basic C programs.
 ```java
 ├── CO-FPGA
 │   ├── Bitstream
-│   │   └── cpu_top.bit // generated bit file
+│   │   └── cpu_top.bit       // generated bit file
 │   ├── COCPU_nexys
-│   │   ├── COCPU_nexys.srcs/ //source code here
+│   │   ├── COCPU_nexys.srcs/ // HW source code here
 │   │   └── COCPU_nexys.xpr
-│   ├── CO-FPGA.pdf // instructions pdf
+│   ├── CO-FPGA.pdf           // instructions pdf
 │   └── SW_dev
 │       ├── cpu_lib.c
-│       ├── cpu_lib.h // extremely minimal library for your lab CPU.
-│       ├── hello.c   // write your hello world here
+│       ├── cpu_lib.h         // extremely minimal library for your lab CPU.
+│       ├── hello.c           // write your hello world here
 │       ├── hello.ld
-│       └── Makefile  // use "make" to make everything
+│       └── Makefile          // Makefile to make everything
 ```
