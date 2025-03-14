@@ -10,11 +10,13 @@ int xor_trick(int *arr, int size){
 
 int main(){
     int arr[] = {1, 2, 3, 3, 4, 6, 1, 4, 7, 8, 2, 8, 7};
+    // int arr[] = {1, 3, 7};
     int n = sizeof(arr)/sizeof(int);
     int asm_ret = asm_entry(arr, n);
     int gt_ret = xor_trick(arr, n);
 
     printf("result: %d, gt: %d", asm_ret, gt_ret);
+    // printf("gt: %d", gt_ret);
     printf("\n");
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define term 5
+#define term 10
 
 extern int fibo_asm(int e);
 

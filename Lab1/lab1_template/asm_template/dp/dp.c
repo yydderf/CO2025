@@ -34,6 +34,9 @@ int main(void)
     
     // you can check whether the answer of c and assembly are the same
     printf("Result of C code: %d, Result of assembly code: %d\n", dp_arr[T], dp_arr_2[T]);
+    // for (int i = 0; i < T; ++i) {
+    //     printf("%d %d\n", dp_arr[i], dp_arr_2[i]);
+    // }
     
     return 0;
 }

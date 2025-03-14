@@ -11,9 +11,14 @@ module ALU (
     // Hint: you can use operator to implement
     always @(*) begin
         case(ALUctl)
-            // TODO
+            0: ALUOut = A & B;
+            1: ALUOut = A | B;
+            2: ALUOut = A + B;
+            6: ALUOut = A - B;
+            7: ALUOut = A < B ? 1 : 0;
+            default: ALUOut = 0;
         endcase
     end
-    assign zero = /* TODO */;
+    assign zero = (ALUOut == 0);
 endmodule
 
