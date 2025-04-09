@@ -45,4 +45,3 @@ module ALUCtrl (
         endcase
     end
 endmodule
-

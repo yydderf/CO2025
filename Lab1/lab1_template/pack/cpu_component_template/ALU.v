@@ -22,4 +22,3 @@ module ALU (
     assign zero = (ALUOut == 0);
 endmodule
 
-
