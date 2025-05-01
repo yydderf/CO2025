@@ -11,79 +11,34 @@ module Control (
     output reg [1:0] PCSel
 );
 
-    // TODO: implement your Control here
-    // Hint: follow the Architecture (figure in spec) to set output signal
-    // R-Type 
-    // I-Type 
-    // S-Type 
-    // B-Type 
-    // U-Type 
-    // J-Type 
+    // memRead  1 : data is fetched from mem
+    // memtoReg 00: data from ALU / 01: data from dmem / 10: data from PC + 4
+    // ALUOp    00: direct addition / 01: subtraction / 10: R-type / 11: I-type
+    // memWrite 1 : write to data memory
+    // ALUSrc   1 : operand from imm
+    // regWrite 1 : write to register
+    // PCSel    00: PC + 4 / 01: PC + Imm << 1 / 10: PC = regs[rs1] + imm
     always @(*) begin
-        memRead  = 0;       // 1: data is fetched from mem
-        memtoReg = 2'b00;   // 00: data from ALU / 01: data from mem read / 10: data from PC + 4 / 11: data from imm
-        ALUOp    = 2'b00;   // 00: direct addition / 01: subtraction / 10: R-type & I-type
-        memWrite = 0;       // 1: write to data memory
-        ALUSrc   = 0;       // 1: operand from imm
-        regWrite = 0;       // 1: write to register
-        PCSel    = 2'b00;   // 00: PC + 4 / 01: to branch target / 10: to jump target
-        casez (opcode)
-            7'b0?10111: begin // U lui, auipe
-                regWrite = 1;
-                if (opcode[5]) begin // lui
-                    memtoReg = 2'b11;
-                end else begin
-                    ALUSrc = 1;
-                end
+        case(opcode)
+            7'b0000011: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b1_01_00_0_1_1_00; // I - lw
+            7'b0010011: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b0_00_11_0_1_1_00; // I - addi, andi, ori, slti
+            7'b0100011: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b0_00_00_1_1_0_00; // S - sw
+            7'b0110011: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b0_00_10_0_0_1_00; // R - add, sub, and, or, slt
+            7'b1100011: begin // beq, bne, blt, bge
+                {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite} = {1'b0, 2'b00, 2'b01, 1'b0, 1'b0, 1'b0}; // branch taken (PCSel = 01)
+                if ((funct3 == 3'b000 && BrEq)  || 
+                    (funct3 == 3'b001 && !BrEq) ||
+                    (funct3 == 3'b100 && BrLT)  ||
+                    (funct3 == 3'b101 && !BrLT))  
+                    PCSel = 2'b01; // branch taken (PCSel = 01)
+                else
+                    PCSel = 2'b00; // branch not taken (PCSel = 00)
             end
-            7'b1101111: begin // J jal
-                regWrite = 1;
-                memtoReg = 2'b10;
-                PCSel = 2'b10;
-            end
-            7'b1100111: begin // J jalr
-                regWrite = 1;
-                memtoReg = 2'b10;
-                ALUSrc = 1;
-                PCSel = 2'b10;
-            end
-            7'b0000011: begin // I lb, lh, lw, lbu, lhu
-                regWrite = 1;
-                memRead = 1;
-                ALUSrc = 1;
-                memtoReg = 2'b01;
-            end
-            7'b1100011: begin // B beq, bne, blt, bge, bltu, bgeu
-                ALUOp = 2'b01;
-                PCSel = 2'b01;
-            end
-            7'b0100011: begin // S sb, sh, sw
-                ALUSrc = 1;
-                memWrite = 1;
-            end
-            7'b0010011: begin
-                // I addi, slti, xori, ori, andi
-                // I slli, srli, srai
-                regWrite = 1;
-                ALUSrc = 1;
-                ALUOp = 2'b10;
-            end
-            7'b0110011: begin // R add, sub, slt, slt, sltu, xor, srl, sra, or, and
-                regWrite = 1;
-                ALUOp = 2'b10;
-            end
-            7'b0001111: begin // I fence, fence.i
-            end
-            7'b1110011: begin
-                // I ecall ebreak
-                // I csrrw, csrrs, csrrc
-                // I csrrwi, csrrsi, csrrci
-            end
-            default: begin 
-            end
+            7'b1100111: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b0_10_00_0_1_1_10; // I - jalr
+            7'b1101111: {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'b0_10_00_0_0_1_01; // J - jal
+            default:    {memRead, memtoReg, ALUOp, memWrite, ALUSrc, regWrite, PCSel} = 10'bxxxxxxxxxx;
         endcase
+        // $display("ALU: ALUctl = %h, A = %h, B = %h, Out = %h", ALUctl, A, B, ALUOut);
     end
 
-
 endmodule
-

@@ -6,7 +6,7 @@ module PC (
 );
 
     // TODO: implement your program counter here
-    always @(negedge clk, negedge rst) begin
+    always @(posedge clk, negedge rst) begin
         // rst == 0 to reset
         if (~rst)
             pc_o <= 32'd0;

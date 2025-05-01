@@ -8,7 +8,7 @@ module PC (
     // TODO: implement your program counter here
     always @(posedge clk, negedge rst) begin
         // rst == 0 to reset
-        if (~rst)
+        if (!rst)
             pc_o <= 32'd0;
         else
             pc_o <= pc_i;

@@ -39,33 +39,55 @@ InstructionMemory m_InstMem(
     .inst(inst)
 );
 
-wire        BrEq;
-wire        BrLT;
-wire        memRead;
-wire [1:0]  memtoReg;
-wire [1:0]  ALUOp;
-wire        memWrite;
-wire        ALUSrc;
-wire        regWrite;
-wire [1:0]  PCSel;
+wire [31:0] PC_ID;
+wire [31:0] PC_4_ID;
+wire [31:0] Inst_ID;
+IF_ID_Reg m_IF_ID_Reg(
+    .clk(clk),
+    .rst(rst),
+    .PC_i(currPC),
+    .PC_4_i(sum1),
+    .Inst_i(inst),
+    .PC_o(PC_ID),
+    .PC_4_o(PC_4_ID),
+    .Inst_o(Inst_ID)
+);
+
+wire BrEq;
+wire BrLT;
+wire [2:0] WB;
+wire [1:0] M;
+wire [2:0] EX;
+wire [1:0] PCSel;
+
+// wire [1:0] memtoReg;
+// wire memRead;
+// wire memWrite;
+// wire regWrite;
+// wire ALUSrc;
+// wire [1:0] ALUOp;
 Control m_Control(
-    .opcode(inst[6:0]),
-    .funct3(inst[14:12]),
+    .opcode(Inst_ID[6:0]),
+    .funct3(Inst_ID[14:12]),
     .BrEq(BrEq),
     .BrLT(BrLT),
-    .memRead(memRead),
-    .memtoReg(memtoReg),
-    .ALUOp(ALUOp),
-    .memWrite(memWrite),
-    .ALUSrc(ALUSrc),
-    .regWrite(regWrite),
+    .M(M),
+    .WB(WB),
+    .EX(EX),
     .PCSel(PCSel)
 );
+wire [1:0] memtoReg;
+wire memRead;
+wire memWrite;
+wire regWrite;
+wire ALUSrc;
+wire [1:0] ALUOp;
 
 // For Student:
 // Do not change the Register instance name!
 // Or you will fail validation.
 
+wire [4:0] writeReg_WB;
 wire [31:0] writeData;
 wire [31:0] readData1;
 wire [31:0] readData2;
@@ -73,9 +95,9 @@ Register m_Register(
     .clk(clk),
     .rst(rst),
     .regWrite(regWrite),
-    .readReg1(inst[19:15]),
-    .readReg2(inst[24:20]),
-    .writeReg(inst[11:7]),
+    .readReg1(Inst_ID[19:15]),
+    .readReg2(Inst_ID[24:20]),
+    .writeReg(writeReg_WB),
     .writeData(writeData),
     .readData1(readData1),
     .readData2(readData2)
@@ -96,7 +118,7 @@ BranchComp m_BranchComp(
 
 wire [31:0] imm;
 ImmGen m_ImmGen(
-    .inst(inst),
+    .inst(Inst_ID),
     .imm(imm)
 );
 
@@ -108,9 +130,44 @@ ShiftLeftOne m_ShiftLeftOne(
 
 wire [31:0] sum2;
 Adder m_Adder_2(
-    .a(currPC),
+    .a(PC_ID),
     .b(shlImm),
     .sum(sum2)
+);
+
+wire [2:0] WB_EX;
+wire [1:0] M_EX;
+wire [31:0] PC_4_EX;
+wire [31:0] readData1_EX;
+wire [31:0] readData2_EX;
+wire [31:0] imm_EX;
+wire [4:0] writeReg_EX;
+wire funct7_EX;
+wire [2:0] funct3_EX;
+ID_EX_Reg m_ID_EX_Reg(
+    .clk(clk),
+    .rst(rst),
+    .WB_i(WB),
+    .M_i(M),
+    .EX_i(EX),
+    .pc_4_i(PC_4_ID),
+    .readData1_i(readData1),
+    .readData2_i(readData2),
+    .imm_i(imm),
+    .funct7_i(Inst_ID[30]),
+    .funct3_i(Inst_ID[14:12]),
+    .writeReg_i(Inst_ID[11:7]),
+    .WB_o(WB_EX),
+    .M_o(M_EX),
+    .ALUSrc(ALUSrc),
+    .ALUOp(ALUOp),
+    .pc_4_o(PC_4_EX),
+    .readData1_o(readData1_EX),
+    .readData2_o(readData2_EX),
+    .imm_o(imm_EX),
+    .funct7_o(funct7_EX),
+    .funct3_o(funct3_EX),
+    .writeReg_o(writeReg_EX)
 );
 
 wire [31:0] ALUOut;
@@ -118,7 +175,7 @@ wire [3:0] ALUCtl;
 wire zero;
 ALU m_ALU(
     .ALUctl(ALUCtl),
-    .A(readData1),
+    .A(readData1_EX),
     .B(MuxALUOut),
     .ALUOut(ALUOut),
     .zero(zero)
@@ -135,8 +192,8 @@ Mux3to1 #(.size(32)) m_Mux_PC(
 wire [31:0] MuxALUOut;
 Mux2to1 #(.size(32)) m_Mux_ALU(
     .sel(ALUSrc),
-    .s0(readData2),
-    .s1(imm),
+    .s0(readData2_EX),
+    .s1(imm_EX),
     .out(MuxALUOut)
 );
 
@@ -146,9 +203,33 @@ Mux2to1 #(.size(32)) m_Mux_ALU(
 // ALUOp: -> ALUCtrl: arithmetic operation
 ALUCtrl m_ALUCtrl(
     .ALUOp(ALUOp),
-    .funct7(inst[30]),
-    .funct3(inst[14:12]),
+    .funct7(funct7_EX),
+    .funct3(funct3_EX),
     .ALUCtl(ALUCtl)
+);
+
+// EX_MEM
+wire [2:0] WB_MEM;
+wire [31:0] PC_4_MEM;
+wire [31:0] ALUOut_MEM;
+wire [31:0] readData2_MEM;
+wire [4:0] writeReg_MEM;
+EX_MEM_Reg m_EX_MEM_Reg (
+    .clk(clk),
+    .rst(rst),
+    .WB_i(WB_EX),
+    .M_i(M_EX),
+    .pc_4_i(PC_4_EX),
+    .ALUOut_i(ALUOut),
+    .readData2_i(readData2_EX),
+    .writeReg_i(writeReg_EX),
+    .WB_o(WB_MEM),
+    .memRead(memRead),
+    .memWrite(memWrite),
+    .pc_4_o(PC_4_MEM),
+    .ALUOut_o(ALUOut_MEM),
+    .readData2_o(readData2_MEM),
+    .writeReg_o(writeReg_MEM)
 );
 
 wire [31:0] readData;
@@ -157,10 +238,31 @@ DataMemory m_DataMemory(
     .clk(clk),
     .memWrite(memWrite),
     .memRead(memRead),
-    .address(ALUOut),
-    .writeData(readData2),
+    .address(ALUOut_MEM),
+    .writeData(readData2_MEM),
     .readData(readData)
 );
+
+// MEM_WB
+wire [31:0] PC_4_WB;
+wire [31:0] ALUOut_WB;
+wire [31:0] readData_WB;
+MEM_WB_Reg m_MEM_WB_Reg (
+    .clk(clk),
+    .rst(rst),
+    .WB_i(WB_MEM),
+    .pc_4_i(PC_4_MEM),
+    .ALUOut_i(ALUOut_MEM),
+    .readData_i(readData),
+    .writeReg_i(writeReg_MEM),
+    .regWrite(regWrite),
+    .memtoReg(memtoReg),
+    .pc_4_o(PC_4_WB),
+    .ALUOut_o(ALUOut_WB),
+    .readData_o(readData_WB),
+    .writeReg_o(writeReg_WB)
+);
+
 
 // memtoReg val: data source -> selected data
 // 00: data from ALU
@@ -168,9 +270,9 @@ DataMemory m_DataMemory(
 // 10: data from adder1 (PC+4)
 Mux3to1 #(.size(32)) m_Mux_WriteData(
     .sel(memtoReg),
-    .s0(ALUOut),
-    .s1(readData),
-    .s2(sum1),
+    .s0(ALUOut_WB),
+    .s1(readData_WB),
+    .s2(PC_4_WB),
     .out(writeData)
 );
 

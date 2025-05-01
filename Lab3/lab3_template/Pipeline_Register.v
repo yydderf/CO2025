@@ -8,5 +8,11 @@ module Pipeline_Register #(
 );
     // TODO: implement your pipeline register here
     // Hint: it stores inter-staged signals at the posedge of the clock.
+    always @(posedge clk, negedge rst) begin
+        if (!rst)
+            data_o <= 0;
+        else
+            data_o <= data_i;
+    end
 
 endmodule
